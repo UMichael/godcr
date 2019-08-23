@@ -32,8 +32,8 @@ func changeTheme(change fyne.App) fyne.CanvasObject {
 			iconResource := canvas.NewImageFromResource(fyne.NewStaticResource("Decred", decredDark))
 			overview.icon.Resource = iconResource.Resource
 			canvas.Refresh(overview.icon)
-
 			change.Settings().SetTheme(theme.LightTheme())
+
 		} else if background == "Dark Theme" {
 			decredLight, err := ioutil.ReadFile("./fyne/pages/png/decredLight.png")
 			if err != nil {

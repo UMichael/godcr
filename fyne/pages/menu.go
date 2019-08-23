@@ -66,7 +66,7 @@ func menuPage(ctx context.Context, wallet godcrApp.WalletMiddleware, fyneApp fyn
 	menu.tabs = widget.NewTabContainer(
 		widget.NewTabItemWithIcon("Overview", fyne.NewStaticResource("Overview", overviewFile), overviewPage(wallet, fyneApp)),
 		widget.NewTabItemWithIcon("History", fyne.NewStaticResource("History", historyFile), historyPage(wallet, window)),
-		widget.NewTabItemWithIcon("Send", fyne.NewStaticResource("Send", sendFile), pageNotImplemented()),
+		widget.NewTabItemWithIcon("Send", fyne.NewStaticResource("Send", sendFile), sendPage(wallet, window)),
 		widget.NewTabItemWithIcon("Receive", fyne.NewStaticResource("Receive", receiveFile), receivePage(wallet, window)),
 		widget.NewTabItemWithIcon("Accounts", fyne.NewStaticResource("Accounts", accountsFile), pageNotImplemented()),
 		widget.NewTabItemWithIcon("Staking", fyne.NewStaticResource("Staking", stakingFile), stakingPage(wallet)),
@@ -80,10 +80,12 @@ func menuPage(ctx context.Context, wallet godcrApp.WalletMiddleware, fyneApp fyn
 			// update only when the user is on the page
 			if menu.tabs.CurrentTabIndex() == 0 {
 				overviewPageUpdates(wallet)
-			} else if menu.tabs.CurrentTabIndex() == 3 {
-				receivePageUpdates(wallet)
 			} else if menu.tabs.CurrentTabIndex() == 1 {
 				historyPageUpdates(wallet, window)
+			} else if menu.tabs.CurrentTabIndex() == 2 {
+				sendPageUpdates(wallet)
+			} else if menu.tabs.CurrentTabIndex() == 3 {
+				receivePageUpdates(wallet)
 			}
 			statusUpdates(wallet)
 			time.Sleep(time.Second * 1)

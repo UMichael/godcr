@@ -25,6 +25,7 @@ func ShowSyncWindow(ctx context.Context, wallet godcrApp.WalletMiddleware, windo
 	reportLabel.Hide()
 
 	var infoButton *widget.Button
+	reportLabel.Hide()
 
 	infoButton = widget.NewButton("Tap to view informations", func() {
 		infoButton.Hide()
