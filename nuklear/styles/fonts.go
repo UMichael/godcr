@@ -1,10 +1,9 @@
 package styles
 
 import (
-	"io/ioutil"
-
 	"github.com/golang/freetype"
 	"github.com/golang/freetype/truetype"
+	"github.com/raedahgroup/godcr/nuklear/assets"
 	"golang.org/x/image/font"
 )
 
@@ -22,17 +21,17 @@ const (
 )
 
 func InitFonts() error {
-	boldItalicsFontBytes, err := ioutil.ReadFile("nuklear/assets/font/SourceSansPro-SemiboldIt.ttf")
+	boldItalicsFontBytes, err := assets.Font("SourceSansPro-SemiboldIt.ttf")
 	if err != nil {
 		return err
 	}
 
-	semiBoldFontBytes, err := ioutil.ReadFile("nuklear/assets/font/SourceSansPro-Semibold.ttf")
+	semiBoldFontBytes, err := assets.Font("SourceSansPro-Semibold.ttf")
 	if err != nil {
 		return err
 	}
 
-	regularFontBytes, err := ioutil.ReadFile("nuklear/assets/font/SourceSansPro-Regular.ttf")
+	regularFontBytes, err := assets.Font("SourceSansPro-Regular.ttf")
 	if err != nil {
 		return err
 	}
