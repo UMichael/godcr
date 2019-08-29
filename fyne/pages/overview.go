@@ -2,8 +2,6 @@ package pages
 
 import (
 	"image/color"
-	"io/ioutil"
-	"log"
 	"strconv"
 
 	"fyne.io/fyne"
@@ -53,20 +51,12 @@ func statusUpdates(wallet godcrApp.WalletMiddleware) {
 func overviewPage(wallet godcrApp.WalletMiddleware, fyneApp fyne.App) fyne.CanvasObject {
 	fyneTheme := fyneApp.Settings().Theme()
 	if fyneTheme.BackgroundColor() == theme.LightTheme().BackgroundColor() {
-		decredDark, err := ioutil.ReadFile("./fyne/pages/png/decredDark.png")
-		if err != nil {
-			log.Fatalln("exit png file missing", err)
-		}
 		overview.goDcrLabel = canvas.NewText(godcrApp.DisplayName, color.RGBA{0, 0, 255, 0})
-		overview.icon = canvas.NewImageFromResource(fyne.NewStaticResource("Decred", decredDark))
+		overview.icon = canvas.NewImageFromResource(fyne.NewStaticResource("Decred", Png("decredDark.png")))
 
 	} else if fyneTheme.BackgroundColor() == theme.DarkTheme().BackgroundColor() {
-		decredLight, err := ioutil.ReadFile("./fyne/pages/png/decredLight.png")
-		if err != nil {
-			log.Fatalln("exit png file missing", err)
-		}
 		overview.goDcrLabel = canvas.NewText(godcrApp.DisplayName, color.RGBA{255, 255, 255, 0})
-		overview.icon = canvas.NewImageFromResource(fyne.NewStaticResource("Decred", decredLight))
+		overview.icon = canvas.NewImageFromResource(fyne.NewStaticResource("Decred", Png("decredLight.png")))
 	}
 	overview.icon.FillMode = canvas.ImageFillOriginal
 	iconEnlarge := fyne.NewContainerWithLayout(layout.NewFixedGridLayout(fyne.NewSize(66, 55)), overview.icon)

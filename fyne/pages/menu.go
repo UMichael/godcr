@@ -2,8 +2,6 @@ package pages
 
 import (
 	"context"
-	"io/ioutil"
-	"log"
 	"time"
 
 	"fyne.io/fyne"
@@ -27,51 +25,18 @@ func pageNotImplemented() fyne.CanvasObject {
 }
 
 func menuPage(ctx context.Context, wallet godcrApp.WalletMiddleware, fyneApp fyne.App, window fyne.Window) fyne.CanvasObject {
-	overviewFile, err := ioutil.ReadFile("./fyne/pages/png/overview.png")
-	if err != nil {
-		log.Fatalln("overview png file missing", err)
-	}
-	historyFile, err := ioutil.ReadFile("./fyne/pages/png/history.png")
-	if err != nil {
-		log.Fatalln("history png file missing", err)
-	}
-	sendFile, err := ioutil.ReadFile("./fyne/pages/png/send.png")
-	if err != nil {
-		log.Fatalln("send png file missing", err)
-	}
-	receiveFile, err := ioutil.ReadFile("./fyne/pages/png/receive.png")
-	if err != nil {
-		log.Fatalln("receive png file missing", err)
-	}
-	accountsFile, err := ioutil.ReadFile("./fyne/pages/png/account.png")
-	if err != nil {
-		log.Fatalln("account png file missing", err)
-	}
-	moreFile, err := ioutil.ReadFile("./fyne/pages/png/more.png")
-	if err != nil {
-		log.Fatalln("security png file missing", err)
-	}
-	exitFile, err := ioutil.ReadFile("./fyne/pages/png/exit.png")
-	if err != nil {
-		log.Fatalln("exit png file missing", err)
-	}
-	stakingFile, err := ioutil.ReadFile("./fyne/pages/png/stake.png")
-	if err != nil {
-		log.Fatalln("staking png file missing", err)
-	}
-
 	menu.peerConn = widget.NewLabel("")
 	menu.blkHeight = widget.NewLabel("")
 
 	menu.tabs = widget.NewTabContainer(
-		widget.NewTabItemWithIcon("Overview", fyne.NewStaticResource("Overview", overviewFile), overviewPage(wallet, fyneApp)),
-		widget.NewTabItemWithIcon("History", fyne.NewStaticResource("History", historyFile), pageNotImplemented()),
-		widget.NewTabItemWithIcon("Send", fyne.NewStaticResource("Send", sendFile), pageNotImplemented()),
-		widget.NewTabItemWithIcon("Receive", fyne.NewStaticResource("Receive", receiveFile), receivePage(wallet, window)),
-		widget.NewTabItemWithIcon("Accounts", fyne.NewStaticResource("Accounts", accountsFile), pageNotImplemented()),
-		widget.NewTabItemWithIcon("Staking", fyne.NewStaticResource("Staking", stakingFile), stakingPage(wallet)),
-		widget.NewTabItemWithIcon("More", fyne.NewStaticResource("More", moreFile), morePage(wallet, fyneApp)),
-		widget.NewTabItemWithIcon("Exit", fyne.NewStaticResource("Exit", exitFile), exit(ctx, fyneApp, window)))
+		widget.NewTabItemWithIcon("Overview", fyne.NewStaticResource("Overview", Png("overview.png")), overviewPage(wallet, fyneApp)),
+		widget.NewTabItemWithIcon("History", fyne.NewStaticResource("History", Png("history.png")), pageNotImplemented()),
+		widget.NewTabItemWithIcon("Send", fyne.NewStaticResource("Send", Png("send.png")), pageNotImplemented()),
+		widget.NewTabItemWithIcon("Receive", fyne.NewStaticResource("Receive", Png("receive.png")), receivePage(wallet, window)),
+		widget.NewTabItemWithIcon("Accounts", fyne.NewStaticResource("Accounts", Png("account.png")), pageNotImplemented()),
+		widget.NewTabItemWithIcon("Staking", fyne.NewStaticResource("Staking", Png("stake.png")), stakingPage(wallet)),
+		widget.NewTabItemWithIcon("More", fyne.NewStaticResource("More", Png("more.png")), morePage(wallet, fyneApp)),
+		widget.NewTabItemWithIcon("Exit", fyne.NewStaticResource("Exit", Png("exit.png")), exit(ctx, fyneApp, window)))
 	menu.tabs.SetTabLocation(widget.TabLocationLeading)
 
 	// would update all labels for all pages every seconds, all objects to be updated should be placed here
