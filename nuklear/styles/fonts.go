@@ -9,30 +9,34 @@ import (
 )
 
 var (
-	NavFont             font.Face
-	PageHeaderFont      font.Face
-	PageContentFont     font.Face
-	BoldPageContentFont font.Face
+	NavFont                  font.Face
+	PageHeaderFont           font.Face
+	PageContentFont          font.Face
+	BoldPageContentFont      font.Face
+	SmallBoldPageContentFont font.Face
+	LightPageContentFont     font.Face
 )
 
 const (
 	pageHeaderFontSize  = 18
 	pageContentFontSize = 16
 	navFontSize         = 16
+	SmallFontSize       = 13
 )
 
+// todo fix font file paths
 func InitFonts() error {
-	boldItalicsFontBytes, err := ioutil.ReadFile("nuklear/assets/font/SourceSansPro-SemiboldIt.ttf")
+	boldItalicsFontBytes, err := ioutil.ReadFile("../../nuklear/assets/font/SourceSansPro-SemiboldIt.ttf")
 	if err != nil {
 		return err
 	}
 
-	semiBoldFontBytes, err := ioutil.ReadFile("nuklear/assets/font/SourceSansPro-Semibold.ttf")
+	semiBoldFontBytes, err := ioutil.ReadFile("../../nuklear/assets/font/SourceSansPro-Semibold.ttf")
 	if err != nil {
 		return err
 	}
 
-	regularFontBytes, err := ioutil.ReadFile("nuklear/assets/font/SourceSansPro-Regular.ttf")
+	regularFontBytes, err := ioutil.ReadFile("../../nuklear/assets/font/SourceSansPro-Regular.ttf")
 	if err != nil {
 		return err
 	}
@@ -53,6 +57,11 @@ func InitFonts() error {
 	}
 
 	BoldPageContentFont, err = getFont(pageContentFontSize, semiBoldFontBytes)
+	if err != nil {
+		return err
+	}
+
+	SmallBoldPageContentFont, err = getFont(SmallFontSize, semiBoldFontBytes)
 	if err != nil {
 		return err
 	}

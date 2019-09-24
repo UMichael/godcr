@@ -45,8 +45,8 @@ func OpenWalletAndSetupRoutes(ctx context.Context, walletMiddleware app.WalletMi
 }
 
 func (routes *Routes) loadTemplates() {
-	layout := "web/views/layout.html"
-	utils := "web/views/utils.html"
+	layout := "../../web/views/layout.html"
+	utils := "../../web/views/utils.html"
 
 	for _, tmpl := range templates() {
 		parsedTemplate, err := template.New(tmpl.name).Funcs(templateFuncMap()).ParseFiles(tmpl.path, layout, utils)
@@ -82,6 +82,8 @@ func (routes *Routes) registerRoutesRequiringWallet(router chi.Router) {
 
 	router.Get("/", routes.overviewPage)
 	router.Get("/send", routes.sendPage)
+	router.Post("/validate-address", routes.validateAddress)
+	router.Get("/tx-fee-and-size", routes.getFeeAndSize)
 	router.Post("/send", routes.submitSendTxForm)
 	router.Get("/max-send-amount", routes.maxSendAmount)
 	router.Get("/receive", routes.receivePage)
