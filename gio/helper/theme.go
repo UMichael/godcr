@@ -1,55 +1,41 @@
 package helper
 
 import (
-	"gioui.org/widget/material"
-	"gioui.org/text"
-	"gioui.org/text/opentype"
-	"gioui.org/unit"
+	"image/color"
 
-	"golang.org/x/image/font/gofont/goitalic"
-	"golang.org/x/image/font/gofont/goregular"
+	"gioui.org/font"
+	"gioui.org/unit"
+	"gioui.org/widget/material"
 )
 
 type Theme struct {
-	*material.Theme
+	material.Theme
 }
 
 const (
 	fontSize = 13
 )
 
-
 func NewTheme() *Theme {
-	shaper := new(text.Shaper)
-	shaper.Register(getFont(), opentype.Must(
-		opentype.Parse(goregular.TTF),
-	))
-	
-	shaper.Register(getItalicFont(), opentype.Must(
-		opentype.Parse(goitalic.TTF),
-	))
-
-	th := material.NewTheme(shaper)
-	th.Color.Primary =  DecredDarkBlueColor
-	th.Color.Text =  GrayColor
-	th.Color.Hint =  DecredOrangeColor
-	
-	th.TextSize = unit.Sp(fontSize)
-	
-	return &Theme{
-		th,
+	t := &Theme{
+		Theme: material.Theme{Shaper: font.Default()},
 	}
+	t.Color.Primary = color.RGBA{63, 81, 181, 255}
+	t.Color.Text = color.RGBA{0, 0, 0, 255}
+	t.Color.Hint = color.RGBA{187, 187, 187, 255}
+	t.TextSize = unit.Sp(16)
+	return t
 }
 
-func getFont() text.Font {
-	return text.Font{
-		Size: unit.Dp(fontSize),
-	}
-}
+// func getFont() text.Font {
+// 	return text.Font{
+// 		Size: unit.Dp(fontSize),
+// 	}
+// }
 
-func getItalicFont() text.Font {
-	return text.Font {
-		Size: unit.Dp(fontSize),
-		Style: text.Italic,
-	}
-}
+// func getItalicFont() text.Font {
+// 	return text.Font {
+// 		Size: unit.Dp(fontSize),
+// 		Style: text.Italic,
+// 	}
+// }

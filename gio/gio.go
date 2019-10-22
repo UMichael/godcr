@@ -3,27 +3,24 @@ package gio
 import (
 	"image"
 	"log"
-	
-	//"gioui.org/ui"
+
+	"gioui.org/io/system"
+
 	gioapp "gioui.org/app"
 	"gioui.org/layout"
 	"gioui.org/unit"
-	//"gioui.org/widget"
 
 	"github.com/raedahgroup/godcr/gio/helper"
-	
 )
 
-type (
-	Desktop struct {
-		window      *gioapp.Window
-		pages       []page
-		currentPage *page
-		pageChanged bool
+type Desktop struct {
+	window      *gioapp.Window
+	pages       []page
+	currentPage *page
+	pageChanged bool
 
-		theme *helper.Theme
-	}
-)
+	theme *helper.Theme
+}
 
 const (
 	appName      = "GoDcr"
@@ -38,7 +35,6 @@ func LaunchApp() {
 		theme: helper.NewTheme(),
 	}
 	desktop.prepareHandlers()
-	
 
 	go func() {
 		desktop.window = gioapp.NewWindow(
@@ -55,6 +51,9 @@ func LaunchApp() {
 }
 
 func (d *Desktop) prepareHandlers() {
+	list := &layout.List{
+		Axis: layout.Vertical,
+	}
 	pages := getPages()
 	d.pages = make([]page, len(pages))
 
@@ -94,10 +93,10 @@ func (d *Desktop) renderLoop() error {
 	for {
 		e := <-d.window.Events()
 		switch e := e.(type) {
-		case gioapp.DestroyEvent:
+		case system.DestroyEvent:
 			return e.Err
-		case gioapp.FrameEvent:
-			ctx.Reset(&e.Config, e.Size)
+		case system.FrameEvent:
+			ctx.Reset(e.Config, e.Size)
 			d.render(ctx)
 			e.Frame(ctx.Ops)
 		}
@@ -106,25 +105,25 @@ func (d *Desktop) renderLoop() error {
 
 func (d *Desktop) render(ctx *layout.Context) {
 	inset := layout.Inset{
-		Top: unit.Dp(0), 
+		Top:  unit.Dp(0),
 		Left: unit.Dp(0),
 	}
 
-	inset.Layout(ctx, func(){
+	inset.Layout(ctx, func() {
 		flex := layout.Flex{
 			Axis: layout.Horizontal,
 		}
 
-		navChild := flex.Rigid(ctx, func(){
+		navChild := flex.Rigid(ctx, func() {
 			d.renderNavSection(ctx)
 		})
 
-		contentChild := flex.Rigid(ctx, func(){
+		contentChild := flex.Rigid(ctx, func() {
 			inset := layout.Inset{
 				Left: unit.Sp(navSectionWidth - 103),
-				Top: unit.Dp(0),
+				Top:  unit.Dp(0),
 			}
-	
+
 			inset.Layout(ctx, func() {
 				d.renderContentSection(ctx)
 			})
@@ -134,7 +133,7 @@ func (d *Desktop) render(ctx *layout.Context) {
 }
 
 func (d *Desktop) renderNavSection(ctx *layout.Context) {
-	var stack layout.Stack 
+	var stack layout.Stack
 
 	navAreaBounds := image.Point{
 		X: navSectionWidth,
@@ -143,21 +142,22 @@ func (d *Desktop) renderNavSection(ctx *layout.Context) {
 
 	helper.PaintArea(ctx, helper.DecredDarkBlueColor, navAreaBounds)
 
-	navArea := stack.Rigid(ctx, func(){
-		inset := layout.Inset{}
-		inset.Layout(ctx, func(){
-			currentPositionTop := float32(0)
+	navArea := stack.Rigid(ctx, func() {
+		inset := layout.Flex{Axis: layout.Vertical}
+		inset.Layout(ctx, func() {
+			//currentPositionTop := float32(0)
 			for _, page := range d.pages {
-				inset := layout.Inset{
-					Top: unit.Sp(currentPositionTop),
-				}
-				inset.Layout(ctx, func(){
+				inset := layout.Flex{Axis: layout.Vertical}
+				inset.Rigid(ctx, func() {
 					for page.button.Clicked(ctx) {
 						d.changePage(page.name)
 					}
 					d.theme.Button(page.label).Layout(ctx, page.button)
 				})
-				currentPositionTop += 32
+				// inset.Layout(ctx, func() {
+
+				// })
+				// currentPositionTop += 32
 			}
 		})
 	})
@@ -170,7 +170,7 @@ func (d *Desktop) renderContentSection(ctx *layout.Context) {
 		d.currentPage.handler.BeforeRender()
 	}
 
-	var stack layout.Stack 
+	var stack layout.Stack
 
 	contentAreaBounds := image.Point{
 		X: windowWidth * 2,
@@ -178,8 +178,6 @@ func (d *Desktop) renderContentSection(ctx *layout.Context) {
 	}
 
 	helper.PaintArea(ctx, helper.BackgroundColor, contentAreaBounds)
-	
-	
 
 	stack.Layout(ctx)
 
