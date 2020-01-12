@@ -3,8 +3,7 @@ module github.com/raedahgroup/godcr/nuklear
 go 1.13
 
 require (
-	github.com/BurntSushi/xgb v0.0.0-20160522181843-27f122750802 // indirect
-	github.com/aarzilli/nucular v0.0.0-20170530132108-a82c8233eb4b
+	github.com/aarzilli/nucular v0.0.0-20190403084742-0071461892e4
 	github.com/atotto/clipboard v0.1.2
 	github.com/decred/dcrd/dcrutil v1.4.0
 	github.com/decred/slog v1.0.0
