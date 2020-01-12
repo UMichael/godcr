@@ -1,9 +1,9 @@
 module github.com/raedahgroup/godcr/nuklear
 
-go 1.12
+go 1.13
 
 require (
-	github.com/aarzilli/nucular v0.0.0-20190403084742-0071461892e4
+	github.com/aarzilli/nucular v0.0.0-20191227141642-cca133278403
 	github.com/atotto/clipboard v0.1.2
 	github.com/decred/dcrd/dcrutil v1.4.0
 	github.com/decred/slog v1.0.0
@@ -11,8 +11,8 @@ require (
 	github.com/raedahgroup/dcrlibwallet v1.0.1-0.20190831020110-aad933e3f96d
 	github.com/raedahgroup/godcr/app v0.0.0-20200107105444-bd23847c1453
 	github.com/skip2/go-qrcode v0.0.0-20190110000554-dc11ecdae0a9
-	golang.org/x/image v0.0.0-20190501045829-6d32002ffd75
-	golang.org/x/mobile v0.0.0-20190318164015-6bd122906c08
+	golang.org/x/image v0.0.0-20190802002840-cff245a6509b
+	golang.org/x/mobile v0.0.0-20190719004257-d2bd2a29d028
 )
 
 replace github.com/raedahgroup/godcr/app => ../app
