@@ -161,9 +161,8 @@ github.com/decred/dcrwallet/pgpwordlist v1.0.0/go.mod h1:Fek3uYn+9DnEFIreA/8PnTI
 github.com/decred/dcrwallet/pgpwordlist v1.0.1 h1:SIGGOEQ+hNFDr/1wJOf8XAKxEw4zooKIpjLNQSxGjH8=
 github.com/decred/dcrwallet/pgpwordlist v1.0.1/go.mod h1:lPHIIVPkuRNwCfBPSr80kjR+6a2Vpm3nsUeUoUIPPQ4=
 github.com/decred/dcrwallet/rpc/walletrpc v0.1.0/go.mod h1:Zp1ZFTCUo7S6MJvUyS5tYfaDUxGAMHkZ+vbsLgAdd4A=
+github.com/decred/dcrwallet/rpc/walletrpc v0.3.0 h1:xACej+foFUvFX3RPwkg2yp4x5Ur18uRWu3Ddtl62WEM=
 github.com/decred/dcrwallet/rpc/walletrpc v0.3.0/go.mod h1:cl2sU4NOgVXAAwkJPNThyN2P1+bEk27rN+guw9nyRiI=
-github.com/decred/dcrwallet/rpc/walletrpc v1.0.1-0.20181109211527-ca582da21c08 h1:utxL1FSRN1Mpa6kLj/JRUYH8WdGYEYaRAWCAi+5s9rE=
-github.com/decred/dcrwallet/rpc/walletrpc v1.0.1-0.20181109211527-ca582da21c08/go.mod h1:Zp1ZFTCUo7S6MJvUyS5tYfaDUxGAMHkZ+vbsLgAdd4A=
 github.com/decred/dcrwallet/spv v1.0.0/go.mod h1:lz39nz9P/HVoxYa4XAT6ithyR3WgdF0oVu4jtFwnCxE=
 github.com/decred/dcrwallet/spv v1.1.1 h1:G5yXkoiO4LOh3Ba+qvyUIjF2dChOXpiuRCPpjYzzhZw=
 github.com/decred/dcrwallet/spv v1.1.1/go.mod h1:HYfF+A1F+Apf0WPT6QRsG/gfvaFQmWObAytq8pWc6ME=
@@ -242,8 +241,6 @@ github.com/prometheus/client_model v0.0.0-20190812154241-14fe0d1b01d4/go.mod h1:
 github.com/raedahgroup/dcrlibwallet v1.0.1-0.20190807181808-37b6666fe764/go.mod h1:7BxsN3VU3KWUt9R8eHgrBI88kE7/WWSfN0yl0vU1SM8=
 github.com/raedahgroup/dcrlibwallet v1.0.1-0.20190831020110-aad933e3f96d h1:Qc0XqyV0E+9qjq9ujjArXyjtNlQ7W3aQG+Dzw1ZKAig=
 github.com/raedahgroup/dcrlibwallet v1.0.1-0.20190831020110-aad933e3f96d/go.mod h1:7BxsN3VU3KWUt9R8eHgrBI88kE7/WWSfN0yl0vU1SM8=
-github.com/raedahgroup/godcr/cli v0.0.0-20200107105444-bd23847c1453 h1:h0JAduDVG8U0HDFy1BN0ZEzGZrVZh4SZoDEbM7pdlrs=
-github.com/raedahgroup/godcr/cli v0.0.0-20200107105444-bd23847c1453/go.mod h1:OD3J5hLwZvOrwSwt+o6MuoaT4jMyWeFrsiFucMNkK1w=
 github.com/raedahgroup/godcr/nuklear v0.0.0-20200107105444-bd23847c1453 h1:szc7rsrVaU/wn1g9P/iAQ3t04t06v8purwfttjjjfXQ=
 github.com/raedahgroup/godcr/nuklear v0.0.0-20200107105444-bd23847c1453/go.mod h1:jYMpL2uhw71nfkf/qpE11opCNVH0FhlO3B73XLKXSkY=
 github.com/skip2/go-qrcode v0.0.0-20190110000554-dc11ecdae0a9 h1:lpEzuenPuO1XNTeikEmvqYFcU37GVLl8SRNblzyvGBE=

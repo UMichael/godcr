@@ -4,6 +4,8 @@ go 1.13
 
 replace github.com/raedahgroup/godcr/app => ../../app
 
+replace github.com/raedahgroup/godcr/cli => ../../cli
+
 require (
 	github.com/decred/slog v1.0.0
 	github.com/jrick/logrotate v1.0.0
