@@ -19,6 +19,10 @@ jobs:
     - name: Set go 1.11 module
       run: GO111MODULE=on
 
+    - name: Build nuklear
+      run: ./build.sh nuklear
+      id: nuklear
+
     - name: Build cli
       run: ./build.sh cli
       id: cli
@@ -27,6 +31,4 @@ jobs:
       run: ./build.sh terminal
       id: terminal
 
-    - name: Build nuklear
-      run: ./build.sh nuklear
-      id: nuklear
+  
