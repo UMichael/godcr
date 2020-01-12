@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+
+set -e
+
 function deployWeb() {
    echo "building frontend assets with yarn"
    (cd ./web/static/app && yarn install && yarn build)
